@@ -1,0 +1,28 @@
+{
+  "name": "thermometer-slack-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "thermometer.js",
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write \"src/**/*.js\"",
+    "lint": "eslint --fix \"src/**/*.js\"",
+    "fix": "npm run format && npm run lint"
+  },
+  "author": "Wataru Nishi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.2",
+    "crypto-js": "^4.1.1",
+    "express": "^4.17.1",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "jest": "^27.1.0",
+    "prettier": "^2.3.2"
+  }
+}
