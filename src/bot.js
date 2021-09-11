@@ -2,7 +2,7 @@
 
 const Thermometer = require('./thermometer');
 const WeightScale = require('./weight-scale');
-const notify = require('./notify');
+const Notifier = require('./notifier');
 
 let thermometer = null;
 let weightScale = null;
@@ -41,7 +41,12 @@ async function respondToMessage(message) {
         }
     }
 
-    return await notify.postMessageToSlack(attachments);
+    const notifier = Notifier(process.env.SLACK_BOT_TOKEN);
+    const params = {
+        channel: 'CEXR1P9MW',
+        attachments,
+    };
+    return await notifier.postMessageToSlack(params);
 }
 
 module.exports.respondToMessage = respondToMessage;

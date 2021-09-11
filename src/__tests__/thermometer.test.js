@@ -3,6 +3,10 @@ const Thermometer = require('../thermometer');
 
 jest.mock('axios');
 
+beforeEach(() => {
+    jest.clearAllMocks();
+});
+
 test('Thermometer can be instantiated', () => {
     const thermometer = new Thermometer('dummy token');
     expect(thermometer).toBeInstanceOf(Thermometer);
