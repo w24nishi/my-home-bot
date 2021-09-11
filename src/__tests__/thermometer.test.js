@@ -5,6 +5,7 @@ jest.mock('axios');
 
 beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation();
 });
 
 test('Thermometer can be instantiated', () => {

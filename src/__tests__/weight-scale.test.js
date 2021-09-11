@@ -10,6 +10,7 @@ const BACKUP_VAR_ENVS = process.env;
 
 beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation();
     process.env = { ...BACKUP_VAR_ENVS };
 });
 
