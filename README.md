@@ -84,3 +84,7 @@ Slack App の設定で Event Subscriptions を有効化し、 Request URL に実
 
 "Subscribe to bot events" で `app_mention` のsubscriptionを設定すれば、準備完了です。
 ワークスペースにBotをインストールし、任意のチャンネルにBotを追加し、Botをメンションして室温と体重を尋ねれば答えてくれます。
+
+## License
+
+[The MIT License](./LICENSE)

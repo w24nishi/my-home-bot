@@ -9,8 +9,8 @@
     "lint": "eslint --fix \"src/**/*.js\"",
     "fix": "npm run format && npm run lint"
   },
-  "author": "Wataru Nishi",
-  "license": "ISC",
+  "author": "w24nishi",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.21.2",
     "crypto-js": "^4.1.1",
