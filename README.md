@@ -3,6 +3,8 @@
 Nature Remoとタニタの体組成計の利用者は、それぞれのセンサー情報をWeb APIで取得できます。
 これらを取得して報告するSlack Botです。
 
+![使用例](https://github.com/w24nishi/my-home-bot/blob/images/bot-usage.png)
+
 ## 動作環境
 
 Raspberry Pi 上の Node.js 16.8.0 で動作させることを想定していますが、似たような環境であればだいたい動くと思います。
