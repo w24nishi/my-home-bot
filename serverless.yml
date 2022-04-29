@@ -1,0 +1,33 @@
+service: slack-bot
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  stage: ${opt:stage, self:custom.defaultStage}
+  region: ap-northeast-1
+  runtime: nodejs14.x
+
+custom:
+  defaultStage: dev
+  environment:
+    dev: ${file(env/dev.yml)}
+    prod: ${file(env/prod.yml)}
+
+package:
+  individually: true
+  exclude: '**/*'
+
+plugins:
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
+
+functions:
+  slack-bot:
+    handler: aws-node-project/handler.hello
+    environment: ${self:custom.environment.${self:provider.stage}}
+    url: true
+    package:
+      individually: true
+      include:
+        - aws-node-project/handler.js
