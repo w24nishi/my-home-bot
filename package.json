@@ -5,8 +5,8 @@
   "main": "thermometer.js",
   "scripts": {
     "test": "jest",
-    "format": "prettier --write \"src/**/*.js\"",
-    "lint": "eslint --fix \"src/**/*.js\"",
+    "format": "prettier --write \"aws-node-project/**/*.js\"",
+    "lint": "eslint --fix \"aws-node-project/**/*.js\"",
     "fix": "npm run format && npm run lint"
   },
   "author": "w24nishi",

@@ -24,7 +24,7 @@ plugins:
 
 functions:
   slack-bot:
-    handler: aws-node-project/handler.hello
+    handler: aws-node-project/index.handler
     environment: ${self:custom.environment.${self:provider.stage}}
     url: true
     package:
