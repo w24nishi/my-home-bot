@@ -2,9 +2,11 @@
 
 class Handler {
   #requestValidator;
+  #slackClient;
 
-  constructor(requestValidator) {
+  constructor(requestValidator, slackClient) {
     this.#requestValidator = requestValidator;
+    this.#slackClient = slackClient;
   }
 
   async run(event) {
@@ -40,12 +42,23 @@ class Handler {
       });
     }
 
-    const res = {
-      message: 'signature validated.',
-      requestBody,
+    const message = {
+      channel: requestBody.event.channel,
+      attachments: [
+        {
+          text: 'message received.',
+        },
+        {
+          text: `you are: <@${requestBody.event.user}>`,
+        },
+        {
+          text: `your message: ${requestBody.event.text}`,
+        },
+      ],
     };
-    console.log(res);
-    return this.#response(200, res);
+    await this.#slackClient.postMessage(message);
+
+    return this.#response(200, { message: 'ok' });
   }
 
   #response(statusCode, body) {

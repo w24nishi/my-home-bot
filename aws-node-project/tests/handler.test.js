@@ -22,16 +22,12 @@ describe('Handler', () => {
   });
 
   it('returns 200 when the request is a URL verification', async () => {
-    const handler = new Handler({});
+    const handler = new Handler();
     const res = await handler.run(
-      event(
-        'POST',
-        null,
-        JSON.stringify({
-          type: 'url_verification',
-          challenge: '0123456789abcdef',
-        })
-      )
+      event('POST', null, {
+        type: 'url_verification',
+        challenge: '0123456789abcdef',
+      })
     );
     expect(res.statusCode).toBe(200);
 
@@ -39,7 +35,7 @@ describe('Handler', () => {
     expect(body.challenge).toBe('0123456789abcdef');
   });
 
-  it('return 400 when the signature is invalid', async () => {
+  it('returns 400 when the signature is invalid', async () => {
     const isValidSignature = jest.fn(() => false);
     const requestValidator = {
       isValidSignature,
@@ -49,6 +45,26 @@ describe('Handler', () => {
     const res = await handler.run(event('POST'));
     expect(isValidSignature.mock.calls.length).toBe(1);
     expect(res.statusCode).toBe(400);
+  });
+
+  it('posts a message to slack', async () => {
+    const requestValidator = {
+      isValidSignature: () => true,
+    };
+    const postMessage = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+      })
+    );
+    const slackClient = {
+      postMessage,
+    };
+    const handler = new Handler(requestValidator, slackClient);
+    const res = await handler.run(
+      event('POST', undefined, { event: { channel: 'channelId' } })
+    );
+    expect(postMessage.mock.calls.length).toBe(1);
+    expect(res.statusCode).toBe(200);
   });
 });
 
@@ -60,6 +76,6 @@ const event = (method, headers, body) => {
       },
     },
     headers: headers || {},
-    body: body || '{}',
+    body: JSON.stringify(body, null, 0) || '{}',
   };
 };

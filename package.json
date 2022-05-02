@@ -7,7 +7,8 @@
     "test": "jest",
     "format": "prettier --write \"aws-node-project/**/*.js\"",
     "lint": "eslint --fix \"aws-node-project/**/*.js\"",
-    "fix": "npm run format && npm run lint"
+    "fix": "npm run format && npm run lint",
+    "deploy": "serverless deploy --verbose"
   },
   "author": "w24nishi",
   "license": "MIT",
